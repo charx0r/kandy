@@ -1,0 +1,5 @@
+; $Id
+name = Contact Us
+description = Create a quick contactus page along with a contact form, configure before use.
+core = 6.x
+package = NGO Jybe

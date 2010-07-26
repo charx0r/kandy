@@ -45,6 +45,9 @@ function kandy_profile_modules() {
 
     //misc modules
     'advanced_help', 'token', 'pathauto',
+
+    //ngojybe
+    'contactus',
       );
 
   return array_merge($core_modules, $contributed_modules);

@@ -1,0 +1,56 @@
+<?php
+// $Id
+
+/**
+ * Implementation of hook_install
+ **/
+ 
+ function contactus_install() {
+	drupal_install_schema('contactus');
+	}
+
+/**
+ * Implementation of hook_uninstall()
+ **/
+ 
+ function contactus_uninstall() {
+	drupal_uninstall_schema('contactus');
+	}
+	
+/**
+ *Implementation of hook_schema()
+ **/
+ 
+ function contactus_schema() {
+	$schema['contactus'] = array(
+	'description' => t('Stores the email address to which the email should be sent as well as the physical address of the organization.'),
+	'fields' => array (
+				'id' => array(
+				'description' => t('Email id to which email should be sent.'),
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => '',
+				),
+				'lane' => array(
+				'type' => 'text',  
+				'not null' => TRUE, 
+				),
+				'area' => array(
+				'type' => 'text',
+				'not null' => TRUE,
+				),
+				'city' => array(
+				'type' => 'text',
+				'not null' => TRUE,
+				),
+				'telno' => array(
+				'type' => 'text',
+				'not null' => TRUE,
+				),
+	),
+	'primary key' => array('id'),
+	);
+	return $schema;
+
+}

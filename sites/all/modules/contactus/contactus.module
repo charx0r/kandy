@@ -1,0 +1,168 @@
+<?php 
+
+/**
+ * Implementation of hook_help()
+ **/
+/* 
+ function contactus_help() {
+	
+}
+
+*/
+/**
+ * Implementing hook_menu()
+ **/
+ 
+ function contactus_menu() {
+	$items = array();
+	$items['admin/settings/contactus'] = array(
+		'title' => t('ContactUs page settings'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('contactus_admin_settings'),
+		'access arguments' => array('administer Contactuspage'),
+		'type' => MENU_NORMAL_ITEM,
+		'file' => 'contactus.admin.inc',
+		);
+	$items['contacus'] = array(
+		'title' => t('Contact Us'),
+		'page callback' => 'contactus_all',
+		'access arguments' => array('access contactus'),
+		'description' => t('Contact Us'),
+	    'menu_name' => 'primary-links',
+		);
+	return $items;
+	
+}
+
+/**
+ * Implementing hook_perm()
+ */
+ 
+ function contactus_perm() {
+	return array( 'access contactus' , 'administer contactus');
+
+}
+
+/**
+ * Impementing hook_path()
+ */
+ 
+ function contactus_path() {
+	if (function_exists('drupal_get_path')) {
+		//let drupal set the path
+		$path = drupal_get_path('module', 'contactus');
+	}
+	else {
+		//fallback to trying to find the path based on PHP's knowledge of our
+		//current path
+		$path =dirname(_FILE_);
+	}
+	return $path;
+}
+
+/**
+ * Implementing hook_form()
+ */
+ 
+ function contactus_form() {
+	return drupal_get_form('contactus_page_form');
+	
+}
+
+/**
+ * Creating the Contact Page form
+ */
+ 
+ function contactus_page_form($form_state) {
+	$form['#theme'] = 'contactus_page';
+	$form['name'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Name'),
+		'#description' => t('Enter your name'),
+		'#required' => TRUE,
+		'#size' => 20,
+		'#maxlength' => 20,
+	);
+	$form['emailid'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Email ID'),
+		'#required' => TRUE,
+		'#description' => t('Enter your emailid'),
+		'#size' => 20,
+		'#maxlength' => 40,
+	);
+	$form['subject'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Subject'),
+		'#required' => FALSE,
+		'#description' => t('Enter the subject of your query'),
+		'#size' => 60,
+		'#maxlength' => 80,
+	);
+	$form['query'] = array(
+		'#type' => 'textarea',
+		'#title' => t('Query'),
+		'#required' => TRUE,
+		'#description' => t('Enter your query'),
+		'#size' => 20,
+	);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => 'Submit',
+	);
+	$form['reset'] = array(
+		'#type' => 'submit',
+		'#value' => 'Reset Form',
+		'#validate' => array('contactus_page_form_validate'),
+	);
+	return $form;
+
+}
+
+/**
+ * Reseting the Contact form
+ */
+ 
+ function contactus_page_form_clear($form, &$form_state) {
+	$form_state['rebuild'] = TRUE;
+	
+}
+
+/**
+ * Submitting the Contact Form & sending email
+ */
+ 
+ function contactus_page_form_submit($form, &$form_state) {
+	$name = $form_state['values']['name'];
+	$email_id = $form_state['values']['emailid'];
+	$subject = "Contact Form " . $form_state['values']['subject'];
+	$query_date = $form_state['values']['query'];
+	$query = "SELECT (id) FROM  {contactus}";
+	$result = db_result(db_query($query));
+	$message = array(
+		'to' => '$result',
+		'subject' => '$subject',
+		'body' => '$query',
+		'headers' => array('From' => '$email_id'),
+	);
+	$return_message = drupal_mail_send($message);
+	drupal_set_message($return_message);
+	
+}
+/**
+ * Implementing the contactus page
+ */
+ 
+ function contactus_all() {
+	global $base_url;
+	$query = "SELECT lane,area,city,telno FROM {contactus}";
+	$result = db_query($query);
+	$data = db_fetch_object($result);
+	$lane = $data->lane;
+	$area = $data->area;
+	$city = $data->city;
+	$telno = $data->telno;
+	$message = '<b>' . t('Our Address') . '</b>' . '<br/>' . $lane . '<br/>' . $area . '<br/>' . $city . '<br/>' . $telno . '<br/><br/>' . '<b>' . t('Quick Contact') . '</b>'. contactus_form();
+	return $message;
+
+}
