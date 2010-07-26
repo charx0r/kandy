@@ -44,7 +44,7 @@ function kandy_profile_modules() {
     'views', 'views_export', 'views_ui', 
 
     //misc modules
-    'advanced_help', 'pathauto',
+    'advanced_help', 'token', 'pathauto',
       );
 
   return array_merge($core_modules, $contributed_modules);
