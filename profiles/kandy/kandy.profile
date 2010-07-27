@@ -54,7 +54,7 @@ function kandy_profile_modules() {
     'advanced_help', 'token', 'pathauto', 'transliteration', 
 
     //ngojybe
-    'contactus', 'press_releases', 'gallery',
+    'contactus', 'press_release', 'gallery',
       );
 
   return array_merge($core_modules, $contributed_modules);
