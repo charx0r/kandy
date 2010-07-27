@@ -54,7 +54,7 @@ function kandy_profile_modules() {
     'advanced_help', 'token', 'pathauto', 'transliteration',
 
     //ngojybe
-    'contactus', 'news_section',
+    'contactus', 'press_room',
       );
 
   return array_merge($core_modules, $contributed_modules);
