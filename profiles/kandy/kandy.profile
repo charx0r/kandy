@@ -37,7 +37,7 @@ function kandy_profile_modules() {
     'install_profile_api',
 
     //Image API
-    'imageapi', 'imageapi_gd', 'imagecache', 'imagecache_ui',
+    'imageapi', 'imageapi_gd', 'imagecache', 'imagecache_ui','lightbox2',
 
     //cck
     'content', 'content_copy', 'fieldgroup', 'number',
@@ -51,10 +51,10 @@ function kandy_profile_modules() {
     'features',
 
     //misc modules
-    'advanced_help', 'token', 'pathauto', 'transliteration',
+    'advanced_help', 'token', 'pathauto', 'transliteration', 
 
     //ngojybe
-    'contactus', 'press_room',
+    'contactus', 'press_releases', 'gallery',
       );
 
   return array_merge($core_modules, $contributed_modules);
