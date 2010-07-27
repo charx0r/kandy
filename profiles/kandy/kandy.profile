@@ -36,18 +36,25 @@ function kandy_profile_modules() {
     //Install profile
     'install_profile_api',
 
+    //Image API
+    'imageapi', 'imageapi_gd', 'imagecache', 'imagecache_ui',
+
     //cck
     'content', 'content_copy', 'fieldgroup', 'number',
     'optionwidgets', 'text', 'nodereference', 'userreference',
+    'filefield', 'imagefield',
 
     //views
     'views', 'views_export', 'views_ui', 
 
+    //Features
+    'features',
+
     //misc modules
-    'advanced_help', 'token', 'pathauto',
+    'advanced_help', 'token', 'pathauto', 'transliteration',
 
     //ngojybe
-    'contactus',
+    'contactus', 'news_section',
       );
 
   return array_merge($core_modules, $contributed_modules);
@@ -114,7 +121,7 @@ function kandy_profile_tasks(&$task, $url) {
  * Create some content of type "page" as placeholders for content
  * and so menu items can be created
  */
-/*function _kandy_placeholder_content(&$context) {
+function _kandy_placeholder_content(&$context) {
   global $base_url;  
 
   $user = user_load(array('uid' => 1));
@@ -139,13 +146,13 @@ function kandy_profile_tasks(&$task, $url) {
   
   $start = (object) $page;
   $start->title = st('Getting Started');
-  $start->body = '<h1>Welcome to your new Kandy Site.</h1>Initially your site does not have any content, and that is where the fun begins. Use the thin black administration menu across the top of the page to accomplish many of the tasks needed to get your site up and running in no time.<br/><br/><h3>To create content</h3>Select <em>Content</em> -> <em>Add</em> from the administration menu (remember that little black bar at the top of the page?) to get started.  You can create a variety of content, but to start out you may want to create a few simple <a href="'. $base_url . '/node/add/article">Articles</a> or import items from an <a href="'. $base_url . '/node/add/feed">RSS Feed</a><h3>To change configuration options</h3>Select <em>Configuration</em> from the administration menu to change various configuration options and settings on your site.<h3>To add other users</h3>Select <em>People</em> -> <em>Users</em> from the administration menu to add new users or change user roles and permissions (please note tabs on the far right).<h3>Need more help?</h3>Select <em>Help</em> from the administration menu to learn more about what you can do with your site.<br/><br/>Don\'t forget to look for more resources and documentation at the <a href="http://www.jybetech.com">Jybe Tech Solutions</a> website.<br/><br/>ENJOY!!!!';  
+  $start->body = '<h1>Welcome to your new Kandy Site.</h1>Initially your site does not have any content, and that is where the fun begins. Use the thin black settings bar across the top of the page to accomplish many of the tasks needed to get your site up and running in no time.<br/><br/><h3>To create content</h3>Select <em>Content</em> -> <em>Add</em> from the administration menu (remember that little black settings bar at the top-left of the page?) to get started.  You can create a variety of content, but to start out you may want to create a few simple <a href="'. $base_url . '/node/add/article">Articles</a> or import items from an <a href="'. $base_url . '/node/add/feed">RSS Feed</a><h3>To change configuration options</h3>Select <em>Configuration</em> from the settings bar to change various configuration options and settings on your site.<h3>To add other users</h3>Select <em>People</em> -> <em>Users</em> from the settings bar to add new users or change user roles and permissions (please note tabs on the far right).<h3>Need more help?</h3>Select <em>Help</em> from the administration menu to learn more about what you can do with your site.<br/><br/>Don\'t forget to look for more resources and documentation at the <a href="http://www.jybetech.com/ngojybe.html">Jybe Tech Solutions</a> website.<br/><br/>ENJOY!!!!';  
   node_save($start);
 
   menu_rebuild();
   
   $context['message'] = st('Installed Content');
-}*/
+}
 
 /**
  * Import process is finished, move on to the next step
