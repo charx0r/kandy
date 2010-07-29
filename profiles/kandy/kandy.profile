@@ -110,7 +110,12 @@ function kandy_profile_tasks(&$task, $url) {
     
   if($task == 'kandy-configure') {
     $batch['title'] = st('Configuring @drupal', array('@drupal' => drupal_install_profile_name()));
-    $files = module_rebuild_cache();            
+    $files = module_rebuild_cache();
+    foreach ( kandy_feature_modules() as $feature ) {   
+      $batch['operations'][] = array('_install_module_batch', array($feature, $files[$feature]->info['name']));      
+      //-- Initialize each feature individually rather then all together in the end, to avoid execution timeout.
+      $batch['operations'][] = array('features_flush_caches', array()); 
+    }            
     $batch['operations'][] = array('_kandy_cleanup', array());      
     $batch['error_message'] = st('There was an error configuring @drupal.', array('@drupal' => drupal_install_profile_name()));
     $batch['finished'] = '_kandy_configure_finished';
