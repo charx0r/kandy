@@ -68,7 +68,7 @@ function kandy_feature_module() {
      $features = array(
 	      'press_release',
 	      'gallery',
-	      'videos',
+	      'video_gallery',
   );
   return $features;
 }
