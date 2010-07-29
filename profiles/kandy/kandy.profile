@@ -42,7 +42,7 @@ function kandy_profile_modules() {
     //cck
     'content', 'content_copy', 'fieldgroup', 'number',
     'optionwidgets', 'text', 'nodereference', 'userreference',
-    'filefield', 'imagefield',
+    'filefield', 'imagefield','emfield',
 
     //views
     'views', 'views_export', 'views_ui', 
@@ -60,6 +60,18 @@ function kandy_profile_modules() {
   return array_merge($core_modules, $contributed_modules);
 } 
 
+/**
+ * Features module and Kandy features
+ */
+
+function kandy_feature_module() {
+     $features = array(
+	      'press_release',
+	      'gallery',
+	      'videos',
+  );
+  return $features;
+}
 /**
  * Return a list of tasks that this profile supports.
  *
