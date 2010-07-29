@@ -42,7 +42,7 @@ function kandy_profile_modules() {
     //cck
     'content', 'content_copy', 'fieldgroup', 'number',
     'optionwidgets', 'text', 'nodereference', 'userreference',
-    'filefield', 'imagefield','emfield',
+    'filefield', 'imagefield','emfield','emvideo','emaudio',
 
     //views
     'views', 'views_export', 'views_ui', 
