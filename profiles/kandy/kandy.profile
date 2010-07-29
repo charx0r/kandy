@@ -64,7 +64,7 @@ function kandy_profile_modules() {
  * Features module and Kandy features
  */
 
-function kandy_feature_module() {
+function kandy_feature_modules() {
      $features = array(
 	      'press_release',
 	      'gallery',
