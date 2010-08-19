@@ -48,64 +48,17 @@ function press_release_views_default_views() {
       'field' => 'title',
       'relationship' => 'none',
     ),
+  ));
+  $handler->override_option('sorts', array(
     'created' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'date_format' => 'large',
-      'custom_date_format' => '',
-      'exclude' => 0,
+      'order' => 'DESC',
+      'granularity' => 'second',
       'id' => 'created',
       'table' => 'node',
       'field' => 'created',
-      'relationship' => 'none',
-    ),
-    'teaser' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
+      'override' => array(
+        'button' => 'Override',
       ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'exclude' => 0,
-      'id' => 'teaser',
-      'table' => 'node_revisions',
-      'field' => 'teaser',
       'relationship' => 'none',
     ),
   ));
@@ -168,6 +121,13 @@ function press_release_views_default_views() {
     'weight' => 0,
     'name' => 'navigation',
   ));
+  $handler = $view->new_display('block', 'Latest News', 'block_1');
+  $handler->override_option('title', 'Latest News');
+  $handler->override_option('items_per_page', 5);
+  $handler->override_option('row_plugin', 'fields');
+  $handler->override_option('row_options', array());
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
 
   $views[$view->name] = $view;
 
